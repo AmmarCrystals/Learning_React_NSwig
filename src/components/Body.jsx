@@ -3,6 +3,7 @@ import ResturantCard from "./Resturantcard";
 import { useState } from "react";
 import { useEffect } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 function filterData(SearchText, Resturant) {
   const filterDatav = Resturant.filter((Resturant) =>
@@ -52,13 +53,15 @@ const Body = () => {
       >
         search
       </button>
-      {Resturant.length === 0 ? (
+      {Resturant.length  === 0 ? (
         <Shimmer />
       ) : (
         <div className="Cards">
           {Resturant.map((resturant) => {
             return (
-              <ResturantCard {...resturant.info} key={resturant.info.id} />
+              <Link to={"/resturant/" + resturant.info.id }> 
+              <ResturantCard {...resturant?.info} />
+              </Link>
             );
           })}
         </div>

@@ -1,24 +1,45 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+// import {Constant} from "./Constant"
 const ResturantMenue = () => {
   const params = useParams();
-const [resturant, Setresturant] = useState({})
+  const idnumber = params.id;
+  const foo = idnumber.substring(1);
 
-useEffect (()=>{
-getResturantInfo()
-},[])
+  const [resturant, Setresturant] = useState([]);
 
-async function getResturantInfo(){
-    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.2812547&lng=73.0482912&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
-    const json = data.json()
-    console.log(json)
-}
+  useEffect(() => {
+    getResturantInfo();
+  }, []);
 
+  async function getResturantInfo() {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=19.2812547&lng=73.0482912&restaurantId=" + foo
+    );
+    const json = await data?.json();
 
+    const finaldata = json?.data?.cards[0]?.card?.card?.info
+    // const finaldata = json.data?.cards[2]?.card?.card?.info;
+
+    Setresturant(finaldata);
+  }
   return (
     <>
-      <h1>Resturant id : {params.id } </h1>
-      <p> {console.log(params.id)}</p> 
+      <p>{foo}</p>
+      <div className="card">
+        <img
+          src={
+            "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/" +
+            resturant.cloudinaryImageId
+          }
+          alt=""
+        />
+        <h1>{resturant.name}</h1>
+
+        <p>{resturant.city}</p>
+        <p>{resturant.feeDetails?.restaurantId}</p>
+        <p>{resturant.avgRating}</p>
+      </div>
     </>
   );
 };
