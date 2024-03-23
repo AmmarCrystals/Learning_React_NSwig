@@ -1,13 +1,14 @@
 import HeaderComponent from "../src/components/Header";
 import Body from "./components/Body";
 import Footer from "./components/Footer";
-import "./App.css";
+import "./index.css";
 import { createBrowserRouter } from "react-router-dom";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import { Outlet } from "react-router-dom";
 import ResturantMenue from "./components/ResturantMenue";
+import Instamart from "./components/Instamart"
 const Applayout = () => {
   return (
     <>
@@ -39,6 +40,10 @@ export const appRouter = createBrowserRouter([
       {
         path: "/resturant/:id",
         element: <ResturantMenue />,
+      },
+      {
+        path: "/Instamart",
+        element: <Instamart />,
       },
     ],
   },

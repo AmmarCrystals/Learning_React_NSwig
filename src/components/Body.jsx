@@ -4,14 +4,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import { filterData } from "../utils/helper";
 
-function filterData(SearchText, Resturant) {
-  const filterDatav = Resturant.filter((Resturant) =>
-    Resturant?.info?.name?.toLowerCase()?.includes(SearchText.toLowerCase())
-  );
-  // console.log(filterDatav);
-  return filterDatav;
-}
 
 const Body = () => {
   const [allRestorant, setAllRestorant] = useState([]);
@@ -36,16 +30,16 @@ const Body = () => {
 
   return (
     <>
-      <div className="search_box"></div>
-      <input
+      <input 
         type="text"
+        className="border-2 rounded-lg m-2"
         value={SearchText}
         onChange={(e) => {
           SetSearchText(e.target.value);
         }}
         placeholder="Search"
       />
-      <button
+      <button className="rounded-lg bg-yellow-200 mx-2 p-1"
         onClick={() => {
           const data = filterData(SearchText, allRestorant );
           SetResturant(data);
@@ -53,15 +47,17 @@ const Body = () => {
       >
         search
       </button>
-      {Resturant.length  === 0 ? (
+      {Resturant?.length  === 0 ? (
         <Shimmer />
       ) : (
-        <div className="Cards">
+        <div className="flex flex-wrap justify-center gap-4 mx-40 my-10" >
           {Resturant.map((resturant) => {
             return (
+              <>
               <Link to={"/resturant/" + resturant.info.id }> 
               <ResturantCard {...resturant?.info} />
               </Link>
+              </>
             );
           })}
         </div>

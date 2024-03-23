@@ -10,14 +10,14 @@ const ResturantCard = ({
   avgRating,
 }) => {
   return (
-    <div className="card">
+    <div className="w-60">
       <img
-        className="img-burger"
+        className="rounded-3xl w-full"
         src={IMG_CONST_URL + cloudinaryImageId}
         alt=""
       />
-      <h2>{name}</h2>
-      <h3>{cuisines}</h3>
+      <h2 className="font-semibold">{name}</h2>
+      <h3 className="break-words">{cuisines}</h3>
       <h4>{avgRating}</h4>
     </div>
   );

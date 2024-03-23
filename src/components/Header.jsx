@@ -5,7 +5,7 @@ import Applayout from "../App";
 const Titel = () => {
   return (
     <a href="./">
-      <img className="img-logo" src="../Food Fire Logo.png" alt="Logo" />
+      <img className="h-20 " src="../Food Fire Logo.png" alt="Logo" />
     </a>
   );
 };
@@ -18,13 +18,14 @@ const HeaderComponent = () => {
 
   return (
     <>
-      <div className="header">
+      <div className="flex justify-between items-center ">
         <Titel />
-        <div className="navbar">
-          <ul>
+        <div className="">
+          <ul className="flex gap-20">
             <li><Link to="/">Home</Link></li>
             <li><Link to="/About">About us</Link></li>
             <li><Link to="/Contact">Contact</Link></li>
+            <li><Link to="/Instamart">Instamart</Link></li>
             <li><Link to="/card is not cread yet">Card</Link></li>
           </ul>
         </div>
