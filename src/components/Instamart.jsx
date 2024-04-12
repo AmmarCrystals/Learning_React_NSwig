@@ -1,54 +1,69 @@
 import { useState } from "react";
 
-const Section = ({ titel, discription, isvisible, setVisble }) => {
+const Section = ({ titel, discription, isVisible, setIsVisible,setIsVisiblet }) => {
   return (
-    <div className="border border-black p-2 m-2">
-      <h3 className="font-semibold">{titel}</h3>
+    <div className="border border-black p-2 m-2 ">
+      <h2 className="font-bold text-2xl">{titel}</h2>
 
-      <button onClick={() => setVisble(true)}>
-        {isvisible ? "Show" : "Hide"}
-      </button>
+      {isVisible ? (
+        <button onClick={() => setIsVisiblet()} className="border underline p-1">
+          Hide
+        </button>
+      ) : (
+        <button onClick={() => setIsVisible()} className="border underline p-1">
+          Show
+        </button>
+      )}
 
-      {isvisible && <p>{discription}</p>}
+      {isVisible && <p>{discription}</p>}
     </div>
   );
 };
 
 const Instamart = () => {
-  const [sectionConfig, setsectionConfig] = useState("about");
+  const [sectionConfig, setSectionConfig] = useState();
   return (
-    <>
-      <div>
-        <Section
-          titel={"About Instamart"}
-          discription={
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, veritatis nisi soluta nobis totam expedita necessitatibus tenetur corrupti deserunt sed dolor? Odit reprehenderit temporibus veritatis fugiat delectus expedita."
-          }
-          isvisible={sectionConfig === "about"}
-          setVisble={() => setsectionConfig("about")}
+    <div>
+      <Section
+        titel={"About"}
+        discription={
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages."
+        }
+        setIsVisible={() => {
+          setSectionConfig("about");
+        }}
+        setIsVisiblet={() => {
+          setSectionConfig("t");
+        }}
+        isVisible={sectionConfig === "about"}
+      />
+      <Section
+        titel={"Teams"}
+        discription={
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages."
+        }
+        setIsVisible={() => {
+          setSectionConfig("teams");
+        }}
+        setIsVisiblet={() => {
+          setSectionConfig("t");
+        }}
+        isVisible={sectionConfig === "teams"}
         />
-      </div>
-      <div>
-        <Section
-          titel={"Team Instamart"}
-          discription={
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, veritatis nisi soluta nobis totam expedita necessitatibus tenetur corrupti deserunt sed dolor? Odit reprehenderit temporibus veritatis fugiat delectus expedita."
-          }
-          isvisible={sectionConfig === "team"}
-          setVisble={() => setsectionConfig("team")}
-        />
-      </div>
-      <div>
-        <Section
-          titel={"Carer Instamart"}
-          discription={
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, veritatis nisi soluta nobis totam expedita necessitatibus tenetur corrupti deserunt sed dolors Odit reprehenderit temporibus veritatis fugiat delectus expedita."
-          }
-          isvisible={sectionConfig === "Carer"}
-          setVisble={() => setsectionConfig("Carer")}
-        />
-      </div>
-    </>
+      <Section
+        titel={"Carrer"}
+        discription={
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages."
+        }
+        setIsVisible={() => {
+          setSectionConfig("Carrer");
+        }}
+        setIsVisiblet={() => {
+          setSectionConfig("t");
+        }}
+        isVisible={sectionConfig === "Carrer"}
+      />
+    </div>
   );
 };
 

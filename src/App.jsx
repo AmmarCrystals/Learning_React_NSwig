@@ -8,14 +8,21 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import { Outlet } from "react-router-dom";
 import ResturantMenue from "./components/ResturantMenue";
-import Instamart from "./components/Instamart"
+import Instamart from "./components/Instamart";
+import { useState } from "react";
+import UserContext from "./utils/UserContext";
+
 const Applayout = () => {
+  let [user, setUser] = useState({
+    name: "xavi",
+    email: "xavi@gmail.com",
+  });
   return (
-    <>
+    <UserContext.Provider value={{ user: user, setUser: setUser }}>
       <HeaderComponent />
       <Outlet />
       <Footer />
-    </>
+    </UserContext.Provider>
   );
 };
 

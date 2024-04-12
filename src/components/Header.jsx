@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Applayout from "../App";
+import UserContext from "../utils/UserContext";
+
 
 const Titel = () => {
   return (
@@ -11,6 +13,8 @@ const Titel = () => {
 };
 const HeaderComponent = () => {
   const [Fliper, SetFliper] = useState(true);
+
+  const {user} =useContext(UserContext)
 
   function fliphandler() {
     Fliper === true ? SetFliper(false) : SetFliper(true);
@@ -26,9 +30,10 @@ const HeaderComponent = () => {
             <li><Link to="/About">About us</Link></li>
             <li><Link to="/Contact">Contact</Link></li>
             <li><Link to="/Instamart">Instamart</Link></li>
-            <li><Link to="/card is not cread yet">Card</Link></li>
+            <li><Link to="/card is not cread yet">{user.email}</Link></li>
           </ul>
         </div>
+        
         {Fliper === true ? (
           <button onClick={fliphandler}>logIn</button>
         ) : (
